@@ -1,0 +1,32 @@
+version: "3.8"
+
+services:
+  db:
+    image: postgres:13-alpine
+    environment:
+      POSTGRES_DB: mydb
+      POSTGRES_USER: riejxx
+      POSTGRES_PASSWORD: Aa160282**
+    volumes:
+      - db_data:/var/lib/postgresql/data
+    healthcheck:
+      test: ["CMD-SHELL", "pg_isready -U riejxx -d mydb"]
+      interval: 10s
+      retries: 5
+
+  app:
+    build: .
+    ports:
+      - "3000:3000"
+    environment:
+      - PORT=3000
+      - DATABASE_URL=postgres://riejxx:Aa160282**@db:5432/mydb
+    volumes:
+      - .:/app
+      - /app/node_modules
+    depends_on:
+      db:
+        condition: service_healthy
+
+volumes:
+  db_data:
