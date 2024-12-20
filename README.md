@@ -30,6 +30,7 @@
 
 ```bash
 docker-compose up --build
+```
 ## Запуск приложения
 
 Приложение будет доступно по адресу: [http://localhost:3000](http://localhost:3000)
@@ -91,6 +92,7 @@ EXPOSE 3000
 
 # Условие 7: Выполняем автоматические миграции перед запуском
 CMD ["sh", "-c", "node ./src/migration.js && node ./src/server.js"]
+```
 ### docker-compose.yml
 
 ```yaml
@@ -126,6 +128,7 @@ services:
 
 volumes:
   db_data:
+```
 ## Выполнение условий лабораторной работы
 
 1. **Образ должен быть легковесным**
